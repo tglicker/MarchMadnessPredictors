@@ -44,7 +44,7 @@ def main():
         st.session_state.predictor = None
     
     # Create tabs for data input
-    data_tab1, data_tab2, data_tab3 = st.tabs(["Upload Data", "Use Sample Data", "Update Matchups"])
+    data_tab1, data_tab2, data_tab3 = st.tabs(["Upload Data", "Use Integrated Data", "Update Matchups"])
     
     with data_tab1:
         st.header("Upload Team Statistics and Matchup Data")
@@ -94,11 +94,11 @@ def main():
                         st.error(f"Error processing data: {e}")
     
     with data_tab2:
-        st.header("Use Sample Data")
-        st.info("Use pre-loaded sample data to get started quickly without uploading files.")
+        st.header("Use Integrated Data")
+        st.info("Use pre-loaded data to get started quickly without uploading files.")
         
-        if st.button("Load Sample Data"):
-            with st.spinner("Loading sample data and training models..."):
+        if st.button("Load Integrated Data"):
+            with st.spinner("Loading data and training models..."):
                 try:
                     # Load sample data
                     team_stats_df = pd.read_csv("sample_data/team_stats.csv")
@@ -125,7 +125,7 @@ def main():
                     st.session_state.visualizer = visualizer
                     st.session_state.predictor = predictor
                     
-                    st.success("Sample data loaded and models trained successfully!")
+                    st.success("Integrated data loaded and models trained successfully!")
                     st.rerun()
                 except Exception as e:
                     st.error(f"Error loading sample data: {e}")
