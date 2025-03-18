@@ -297,6 +297,17 @@ class Predictor:
         
         # Collect relevant stats
         stats = {}
+
+        #CAN BE DELETED!!!!
+            # Debug logging
+        print("\nMatchup Details:")
+        print(f"Team1: {team1}")
+        print(f"Team2: {team2}")
+        print("\nAvailable columns:", matchup_row.index.tolist())
+        print("\nTeam statistics:")
+        print(f"{team1} stats:", self.processed_data['team_stats'].loc[team1].to_dict())
+        print(f"{team2} stats:", self.processed_data['team_stats'].loc[team2].to_dict())
+        #CAN BE DELETED!!!!!
         
         # Find all stats for both teams
         for col in matchup_row.index:
