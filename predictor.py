@@ -326,12 +326,34 @@ class Predictor:
                 'team1': matchup_row['OverUnder'],
                 'team2': matchup_row['OverUnder']
             }
+
+#This IS ALL ADDED AND CAN BE DELETED
+                # Create comparison table directly
+        comparison_df = pd.DataFrame(index=stats.keys(), columns=[team1, team2])
+        
+        # Fill in values 
+        for stat_name, values in stats.items():
+            if isinstance(values, dict):
+                comparison_df.loc[stat_name, team1] = values.get('team1')
+                comparison_df.loc[stat_name, team2] = values.get('team2')
+        
+        # Clean up any NaN or None values
+        comparison_df = comparison_df.fillna('')
+        
+        # Format numeric values
+        for col in comparison_df.columns:
+            for idx in comparison_df.index:
+                val = comparison_df.loc[idx, col]
+                if isinstance(val, (int, float)):
+                    comparison_df.loc[idx, col] = f"{val:.2f}"
+#This IS ALL ADDED AND CAN BE DELETED
         
         # Create matchup details
         details = {
             'team1': team1,
             'team2': team2,
-            'stats': stats
+            'stats': stats,
+            'comparison_df': comparison_df #This IS ALL ADDED AND CAN BE DELETED
         }
         
         return details
